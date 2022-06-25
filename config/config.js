@@ -1,19 +1,22 @@
-const mongoose = require("mongoose");
+const mysql = require("mysql");
 require("colors");
 
-const MONGO_URI = "mongodb+srv://pavi:pavi@cluster0.ddyxg.mongodb.net/posapp?retryWrites=true&w=majority"
+
 
 //connecDB Function
 
-const connectDb = async () => {
-  try {
-    const conn = await mongoose.connect(MONGO_URI);
-    console.log(`MongoDB Connected ${conn.connection.host}`.bgYellow);
-  } catch (error) {
-    console.log(`Error : ${error.message}`.bgRed);
-    process.exit(1);
-  }
-};
+var connectDb = mysql.createPool({
+  connectionLimit : 10,
+  host:'127.0.0.1',
+  user: 'root',
+  password: 'Pavithra@181289',
+  database: 'keralatask'
+});
+
+
 
 //export
 module.exports = connectDb;
+
+
+
